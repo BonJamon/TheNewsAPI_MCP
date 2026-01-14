@@ -1,0 +1,1 @@
+Create an MCP Server for the TheNewsAPI.
