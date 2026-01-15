@@ -1,1 +1,1 @@
-Create an MCP Server for the TheNewsAPI.
+Create an FastMCP Server for the TheNewsAPI Api. 

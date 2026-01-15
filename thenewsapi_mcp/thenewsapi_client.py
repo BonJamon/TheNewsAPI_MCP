@@ -2,6 +2,16 @@ import requests
 import logging
 from typing import Dict, List, Optional, Any
 from enum import Enum
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--log-level", default="WARNING")
+args = parser.parse_args()
+
+logging.basicConfig(
+    level=args.log_level.upper(),
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+)
 
 logger = logging.getLogger(__name__)
 
@@ -50,11 +60,12 @@ class TheNewsAPIClient:
         params = {
             "api_token": self.access_token,
             "search": trimmed_query,
-            "categories": categories,
             "limit": limit,
             "domains": self.domains,
             "language": self.languages
         }
+        if categories:
+            params["categories"]= categories
 
         try:
             logger.debug("Making search request to %s with params %s", api_url, params)

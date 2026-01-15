@@ -6,6 +6,17 @@ from pydantic import Field
 from fastmcp import FastMCP
 from thenewsapi_mcp.thenewsapi_client import TheNewsAPIClient, NewsCategory
 
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--log-level", default="WARNING")
+args = parser.parse_args()
+
+logging.basicConfig(
+    level=args.log_level.upper(),
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+)
+
 logger = logging.getLogger(__name__)
 
 def create_server(access_token: Optional[str]=None)->FastMCP:
@@ -19,16 +30,15 @@ def create_server(access_token: Optional[str]=None)->FastMCP:
     thenewsapi_client = TheNewsAPIClient(access_token)
 
     @server.tool()
-    def search(query: str, limit: int=1, categories: Optional[List[NewsCategory]]=None)-> Dict[str, Any]:
+    def search(query: str, limit: int=1)-> Dict[str, Any]:
         """
-        Search News Articles by Keywords. 
-        - Use Categories only if the user explicetly mentions a topic like technology, sports, politics, etc. 
+        Search News Articles by Keywords.
         
         Returns a dictionary with the search query, results, status, and
         additional metadata. If the query is empty or invalid, the status
         will be 'error' and an explanatory message is included.
         """
-        logger.info("Tool: Searching TheNewsAPI for '%s' (categories: '%s', limit: '%d')", query, str(categories), limit)
+        logger.info("Tool: Searching TheNewsAPI for '%s' (limit: '%d')", query,limit)
         # Validate query
         if not query or not query.strip():
             logger.warning("Search tool called with empty query")
@@ -48,7 +58,7 @@ def create_server(access_token: Optional[str]=None)->FastMCP:
             validated_limit = 3
             logger.warning("Limit %d capped to %d", limit, validated_limit)
 
-        results = thenewsapi_client.search_news(query, categories=categories, limit=validated_limit)
+        results = thenewsapi_client.search_news(query, limit=validated_limit)
         status = "success" if results else "no_results"
         response: Dict[str, Any] = {
             "query": query,

@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: newsmpc
+Version: 0.1.0
+Summary: Add your description here
+Requires-Python: >=3.14
+Description-Content-Type: text/markdown
+Requires-Dist: dotenv>=0.9.9
+Requires-Dist: fastmcp>=2.14.3
+Requires-Dist: pydantic>=2.12.5
+Requires-Dist: requests>=2.32.5
+
+Create an FastMCP Server for the TheNewsAPI Api. 

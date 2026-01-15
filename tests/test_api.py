@@ -9,5 +9,5 @@ access_token = os.getenv("THENEWSAPI_API_KEY")
 
 
 client = TheNewsAPIClient(access_token)
-results = client.search_news(query="Greenland", limit=1)
+results = client.search_news(query="Trump Greenland", limit=1)
 print(results)

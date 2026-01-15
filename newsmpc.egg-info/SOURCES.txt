@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+newsmpc.egg-info/PKG-INFO
+newsmpc.egg-info/SOURCES.txt
+newsmpc.egg-info/dependency_links.txt
+newsmpc.egg-info/requires.txt
+newsmpc.egg-info/top_level.txt
+tests/test_api.py
+tests/test_mcp.py
+thenewsapi_mcp/__init__.py
+thenewsapi_mcp/server.py
+thenewsapi_mcp/thenewsapi_client.py
