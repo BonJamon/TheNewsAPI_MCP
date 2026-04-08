@@ -2,16 +2,6 @@ import requests
 import logging
 from typing import Dict, List, Optional, Any
 from enum import Enum
-import argparse
-
-parser = argparse.ArgumentParser()
-parser.add_argument("--log-level", default="WARNING")
-args = parser.parse_args()
-
-logging.basicConfig(
-    level=args.log_level.upper(),
-    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
-)
 
 logger = logging.getLogger(__name__)
 

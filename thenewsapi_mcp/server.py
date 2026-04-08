@@ -6,16 +6,6 @@ from pydantic import Field
 from fastmcp import FastMCP
 from thenewsapi_mcp.thenewsapi_client import TheNewsAPIClient, NewsCategory
 
-import argparse
-
-parser = argparse.ArgumentParser()
-parser.add_argument("--log-level", default="WARNING")
-args = parser.parse_args()
-
-logging.basicConfig(
-    level=args.log_level.upper(),
-    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
-)
 
 logger = logging.getLogger(__name__)
 
